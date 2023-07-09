@@ -16,11 +16,11 @@ const newCategories = allCategories.map((category) => {
    return { categoryId: uuidv4(), category: category, selected: false };
 });
 
-// newCategories.unshift({
-//    categoryId: uuidv4(),
-//    category: "FAKE: All Products",
-//    selected: true,
-// });
+newCategories.unshift({
+   categoryId: uuidv4(),
+   category: "FAKE: All Products",
+   selected: true,
+});
 
 function App() {
    const [categoryList, setCategoryList] = useState(newCategories);
@@ -38,17 +38,21 @@ function App() {
       const selectedCategory = tempCategories
          .find((item) => item.categoryId === id)
          .category.slice(6);
-      console.log(selectedCategory);
+      // console.log("Selected category: ", selectedCategory);
 
-      const filteredProducts = productList.filter((item) => {
-         return item.category === selectedCategory;
-      });
-      console.log(filteredProducts);
+      const filteredProducts =
+         selectedCategory === "All Products"
+            ? productList.map((item) => item)
+            : productList.filter((item) => {
+                 return item.category === selectedCategory;
+              });
+
+      // console.log("filteredProducts: ", filteredProducts);
       setFilteredProductList(filteredProducts);
    };
 
    const handleProduct = (id) => {
-      console.log("handle product...", id);
+      console.log("handle product... id: ", id);
    };
 
    return (
