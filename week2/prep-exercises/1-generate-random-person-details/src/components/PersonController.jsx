@@ -8,7 +8,7 @@ const PersonController = () => {
 
    const getPerson = async (num) => {
       setIsLoading(true);
-      setPerson(null); // Clear the person state before fetching new data
+      setPerson(null);
 
       const url = `https://www.randomuser.me/api?results=${num}`;
       const response = await fetch(url);
@@ -24,23 +24,6 @@ const PersonController = () => {
       setIsLoading(false);
       setPerson(result);
    };
-
-   // const getPerson = async (num) => {
-   //    setIsLoading(true);
-   //    const url = `https://www.randomuser.me/api?results=${num}`;
-   //    const response = await fetch(url);
-   //    const data = await response.json();
-   //    const tempResult = data.results;
-
-   //    const result = tempResult.map((item) => ({
-   //       first: item.name.first,
-   //       last: item.name.last,
-   //       email: item.email,
-   //    }));
-
-   //    setIsLoading(false);
-   //    setPerson(result);
-   // };
 
    useEffect(() => {
       getPerson(number);

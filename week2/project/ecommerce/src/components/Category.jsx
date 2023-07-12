@@ -1,13 +1,13 @@
 import React from "react";
 
-const Category = ({ singleCategory, handleCategory }) => {
-   const { categoryId, category, selected } = singleCategory;
+const Category = ({ singleCategory, handleSelectedCategory }) => {
+   const { category, selected } = singleCategory;
    return (
       <div
          className={
             selected ? "categories--item category-selected" : "categories--item"
          }
-         onClick={() => handleCategory(categoryId)}
+         onClick={() => handleSelectedCategory(category)}
       >
          {category}
       </div>
