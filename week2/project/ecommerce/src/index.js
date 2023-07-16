@@ -1,7 +1,6 @@
 //                              Project link on netlify
 // --------------------------------------------------------------------------------
-// https://64aab3117ed34f28ea2eafb1--incomparable-dieffenbachia-601ed8.netlify.app/
-//
+// https://64b433be1f52c1622c151df2--incomparable-dieffenbachia-601ed8.netlify.app/
 // --------------------------------------------------------------------------------
 
 import ReactDOM from "react-dom/client";
