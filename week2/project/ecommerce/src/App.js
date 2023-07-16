@@ -7,7 +7,6 @@
 import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
-import NotFound from "./components/NotFound";
 import "./App.css";
 
 function App() {

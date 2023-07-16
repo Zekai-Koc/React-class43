@@ -1,6 +1,6 @@
 //                              Project link on netlify
 // --------------------------------------------------------------------------------
-//..........
+// https://64b433be1f52c1622c151df2--incomparable-dieffenbachia-601ed8.netlify.app/
 //
 // --------------------------------------------------------------------------------
 
@@ -26,7 +26,6 @@ function Home() {
    };
 
    const handleProduct = (productName) => {
-      // console.log("Product Name: ", productName);
       setSelectedProduct(productName);
    };
 
