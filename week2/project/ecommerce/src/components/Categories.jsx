@@ -3,15 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 
 import Category from "./Category";
 
-const Categories = ({ handleNEW, handleMyInfo }) => {
+const Categories = ({ handleCategory, handleMyInfo }) => {
    const [categoryList, setCategoryList] = useState([]);
    const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
-   useEffect(() => {
-      getCategoryList().then((result) => setCategoryList(result));
-   }, []);
-
-   const getCategoryList = async (num) => {
+   const getCategoryList = async () => {
       setIsLoadingCategories(true);
       try {
          const url = `https://fakestoreapi.com/products/categories`;
@@ -41,6 +37,10 @@ const Categories = ({ handleNEW, handleMyInfo }) => {
       }
    };
 
+   useEffect(() => {
+      getCategoryList().then((result) => setCategoryList(result));
+   }, []);
+
    const handleSelectedCategory = async (selectedCategoryName) => {
       const tempCategories = categoryList.map((item) => {
          return item.category === selectedCategoryName
@@ -49,7 +49,7 @@ const Categories = ({ handleNEW, handleMyInfo }) => {
       });
       setCategoryList(tempCategories);
 
-      handleNEW(selectedCategoryName);
+      handleCategory(selectedCategoryName);
    };
 
    return (

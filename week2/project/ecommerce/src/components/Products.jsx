@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
+import Productdetails from "./Productdetails";
 
 const Products = ({ selectedCategory, handleMyInfo }) => {
    const [productList, setProductList] = useState([]);
    const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+   const [productSelected, setProductSelected] = useState(false);
+   const [selectedProduct, setSelectedProduct] = useState("");
 
    const getProductList = async (selCat) => {
       setIsLoadingProducts(true);
@@ -33,14 +36,41 @@ const Products = ({ selectedCategory, handleMyInfo }) => {
       getProductList(selectedCategory).then((result) => setProductList(result));
    }, [selectedCategory]);
 
+   const handleProduct = (id) => {
+      const tempSelectedProduct = productList.find((item) => item.id === id);
+
+      if (tempSelectedProduct) {
+         setProductSelected(true);
+         setSelectedProduct(tempSelectedProduct);
+      }
+
+      // console.log("product id: ", id);
+      // console.log("tempSelectedProduct: ", tempSelectedProduct);
+   };
+
+   const closeButton = () => {
+      setProductSelected(false);
+   };
+
    return (
       <div>
-         {isLoadingProducts ? (
+         {productSelected ? (
+            <Productdetails
+               selectedProduct={selectedProduct}
+               closeButton={closeButton}
+            />
+         ) : isLoadingProducts ? (
             <div>Loading products...</div>
          ) : (
             <ul className="products">
                {productList.map((product) => {
-                  return <Product key={product.id} product={product} />;
+                  return (
+                     <Product
+                        key={product.id}
+                        product={product}
+                        handleProduct={handleProduct}
+                     />
+                  );
                })}
             </ul>
          )}
