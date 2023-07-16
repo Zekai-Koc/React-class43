@@ -1,52 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import Category from "./Category";
+import { fetchCategoryList } from "../utils/fetchData";
 
 const Categories = ({ handleCategory, handleMyInfo }) => {
    const [categoryList, setCategoryList] = useState([]);
    const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
-   const getCategoryList = async () => {
-      setIsLoadingCategories(true);
-      try {
-         const url = `https://fakestoreapi.com/products/categories`;
-         const response = await fetch(url);
-         const data = await response.json();
-         const newCategories = data.map((category) => {
-            return {
-               categoryId: uuidv4(),
-               category: category,
-               selected: false,
-            };
-         });
-         newCategories.unshift({
-            categoryId: uuidv4(),
-            category: "All Products",
-            selected: true,
-         });
-         setTimeout(() => setIsLoadingCategories(false), 500);
-         // handleMyInfo({ type: "success", text: "Categories loaded..." });
-         // console.log(newCategories);
-         return await newCategories;
-      } catch (error) {
-         setIsLoadingCategories(false);
-         handleMyInfo({ type: "danger", text: "Error loading categories!" });
-         console.error(error);
-         return [];
-      }
-   };
-
    useEffect(() => {
-      getCategoryList().then((result) => setCategoryList(result));
+      const fetchData = async () => {
+         try {
+            const categories = await fetchCategoryList();
+            setCategoryList(categories);
+            setIsLoadingCategories(false);
+         } catch (error) {
+            setIsLoadingCategories(false);
+            handleMyInfo({ type: "danger", text: error.message });
+            console.error(error);
+         }
+      };
+
+      fetchData();
    }, []);
 
-   const handleSelectedCategory = async (selectedCategoryName) => {
-      const tempCategories = categoryList.map((item) => {
-         return item.category === selectedCategoryName
+   const handleSelectedCategory = (selectedCategoryName) => {
+      const tempCategories = categoryList.map((item) =>
+         item.category === selectedCategoryName
             ? { ...item, selected: true }
-            : { ...item, selected: false };
-      });
+            : { ...item, selected: false }
+      );
       setCategoryList(tempCategories);
 
       handleCategory(selectedCategoryName);
@@ -58,15 +40,13 @@ const Categories = ({ handleCategory, handleMyInfo }) => {
             <div>Loading categories...</div>
          ) : (
             <div className="categories">
-               {categoryList.map((item, index) => {
-                  return (
-                     <Category
-                        key={item.categoryId}
-                        singleCategory={item}
-                        handleSelectedCategory={handleSelectedCategory}
-                     />
-                  );
-               })}
+               {categoryList.map((item, index) => (
+                  <Category
+                     key={item.categoryId}
+                     singleCategory={item}
+                     handleSelectedCategory={handleSelectedCategory}
+                  />
+               ))}
             </div>
          )}
       </div>
