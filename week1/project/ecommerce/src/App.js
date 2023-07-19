@@ -27,7 +27,7 @@ function App() {
    const [productList, setProductList] = useState(allProducts);
    const [filteredProductList, setFilteredProductList] = useState(allProducts);
 
-   const handleCategory = async (id) => {
+   const handleCategory = (id) => {
       const tempCategories = categoryList.map((item) => {
          return item.categoryId === id
             ? { ...item, selected: true }
@@ -38,7 +38,6 @@ function App() {
       const selectedCategory = tempCategories
          .find((item) => item.categoryId === id)
          .category.slice(6);
-      // console.log("Selected category: ", selectedCategory);
 
       const filteredProducts =
          selectedCategory === "All Products"
@@ -47,7 +46,6 @@ function App() {
                  return item.category === selectedCategory;
               });
 
-      // console.log("filteredProducts: ", filteredProducts);
       setFilteredProductList(filteredProducts);
    };
 

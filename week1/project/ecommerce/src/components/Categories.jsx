@@ -5,13 +5,11 @@ const Categories = ({ categoryList, handleCategory }) => {
    return (
       <div className="categories">
          {categoryList.map((item, index) => {
-            return (
-               <Category
-                  key={item.categoryId}
-                  singleCategory={item}
-                  handleCategory={handleCategory}
-               />
-            );
+            <Category
+               key={item.categoryId}
+               singleCategory={item}
+               handleCategory={handleCategory}
+            />;
          })}
       </div>
    );

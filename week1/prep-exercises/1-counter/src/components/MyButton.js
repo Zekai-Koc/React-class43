@@ -4,7 +4,6 @@ const MyButton = ({ handleOperation, buttonId }) => {
    return (
       <div>
          <button
-            // key={buttonId}  ???
             onClick={() => {
                handleOperation(buttonId);
             }}
