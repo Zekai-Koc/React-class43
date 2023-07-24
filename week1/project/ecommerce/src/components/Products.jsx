@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Product from "./Product";
 import allProducts from "../fake-data/all-products";
 
@@ -6,10 +6,10 @@ const Products = ({ selectedCategory, onProductSelect }) => {
    const [productList, setProductList] = useState(allProducts);
 
    const filteredProducts =
-      selectedCategory === "All Products"
+      selectedCategory.slice(6) === "All Products"
          ? productList.map((item) => item)
          : productList.filter((item) => {
-              return item.category === selectedCategory;
+              return item.category === selectedCategory.slice(6);
            });
 
    return (

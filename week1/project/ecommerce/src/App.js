@@ -10,10 +10,11 @@ import Categories from "./components/Categories";
 import Products from "./components/Products";
 
 function App() {
-   const [selectedCategory, setSelectedCategory] = useState("All Products");
+   const [selectedCategory, setSelectedCategory] =
+      useState("FAKE: All Products");
 
    const onCategorySelect = (selectedCategory) => {
-      setSelectedCategory(selectedCategory.slice(6));
+      setSelectedCategory(selectedCategory);
    };
 
    const onProductSelect = (id) => {
@@ -23,10 +24,13 @@ function App() {
    return (
       <div className="App">
          <h1>Products</h1>
-         <Categories onNewCategorySelection={onCategorySelect} />
-         <Products
+         <Categories
+            onCategorySelect={onCategorySelect}
             selectedCategory={selectedCategory}
+         />
+         <Products
             onProductSelect={onProductSelect}
+            selectedCategory={selectedCategory}
          />
       </div>
    );
