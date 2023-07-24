@@ -11,7 +11,7 @@
    justify-content: center;
 }
 
-.categories--item {
+.cat--item {
    background-color: #efeff0;
    cursor: pointer;
    font-weight: 700;
@@ -19,11 +19,11 @@
    padding: 12px;
 }
 
-.category-selected {
+.cat-selected {
    background-color: cadetblue;
 }
 
-.categories--item:hover {
+.cat--item:hover {
    background-color: darkgray;
 }
 
@@ -75,7 +75,7 @@
    .categories {
       flex-wrap: wrap;
    }
-   .categories--item {
+   .cat--item {
       flex-basis: 50%;
    }
    .product--item {

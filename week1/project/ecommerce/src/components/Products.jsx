@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Product from "./Product";
+import allProducts from "../fake-data/all-products";
 
-const Products = ({ filteredProductList, handleProduct }) => {
+const Products = ({ selectedCategory, onProductSelect }) => {
+   const [productList, setProductList] = useState(allProducts);
+
+   const filteredProducts =
+      selectedCategory === "All Products"
+         ? productList.map((item) => item)
+         : productList.filter((item) => {
+              return item.category === selectedCategory;
+           });
+
    return (
       <ul className="products">
-         {filteredProductList.map((product) => {
+         {filteredProducts.map((product) => {
             return (
                <Product
                   key={product.id}
                   product={product}
-                  handleProduct={handleProduct}
+                  onProductSelect={onProductSelect}
                />
             );
          })}

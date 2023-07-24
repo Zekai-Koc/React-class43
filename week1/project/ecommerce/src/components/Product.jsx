@@ -1,10 +1,10 @@
 import React from "react";
 
-const Product = ({ product, handleProduct }) => {
+const Product = ({ product, onProductSelect }) => {
    const { id, title, image } = product;
 
    return (
-      <li className="product--item" onClick={() => handleProduct(id)}>
+      <li className="product--item" onClick={() => onProductSelect(id)}>
          <div className="product">
             <img className="product--image" src={image} alt={title} />
             <span className="product--title" title={product.title}>
