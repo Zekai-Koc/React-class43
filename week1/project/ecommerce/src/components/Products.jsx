@@ -7,7 +7,7 @@ const Products = ({ selectedCategory, onProductSelect }) => {
 
    const filteredProducts =
       selectedCategory.slice(6) === "All Products"
-         ? productList.map((item) => item)
+         ? productList
          : productList.filter((item) => {
               return item.category === selectedCategory.slice(6);
            });
