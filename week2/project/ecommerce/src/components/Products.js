@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "./Productdetails";
 import { useNavigate } from "react-router-dom";
 import { fetchProductList } from "../utils/fetchData";
 
@@ -13,13 +13,14 @@ const Products = ({ selectedCategory, handleProduct, handleMyInfo }) => {
 
    useEffect(() => {
       const fetchData = async () => {
+         setIsLoadingProducts(true);
          try {
             const categories = await fetchProductList(selectedCategory);
             setProductList(categories);
             setIsLoadingProducts(false);
          } catch (error) {
-            setIsLoadingProducts(false);
             handleMyInfo({ type: "danger", text: error.message });
+            setIsLoadingProducts(false);
             console.error(error);
          }
       };
@@ -51,7 +52,7 @@ const Products = ({ selectedCategory, handleProduct, handleMyInfo }) => {
                      <Product
                         key={product.id}
                         product={product}
-                        handleProductItem={handleProductItem}
+                        onProductSelect={handleProductItem}
                      />
                   );
                })}

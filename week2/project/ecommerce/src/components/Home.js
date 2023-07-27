@@ -21,11 +21,11 @@ function Home() {
       }, 1000);
    };
 
-   const handleCategory = (categoryName) => {
+   const onCategorySelect = (categoryName) => {
       setSelectedCategory(categoryName);
    };
 
-   const handleProduct = (productName) => {
+   const onProductSelect = (productName) => {
       setSelectedProduct(productName);
    };
 
@@ -34,12 +34,13 @@ function Home() {
          {myInfo.show && <Myinfo type={myInfo.type} text={myInfo.text} />}
          <h1>Products</h1>
          <Categories
-            handleCategory={handleCategory}
+            onCategorySelect={onCategorySelect}
+            selectedCategory={selectedCategory}
             handleMyInfo={handleMyInfo}
          />
          <Products
             selectedCategory={selectedCategory}
-            handleProduct={handleProduct}
+            handleProduct={onProductSelect}
             handleMyInfo={handleMyInfo}
          />
       </div>

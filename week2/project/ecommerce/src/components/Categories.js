@@ -2,36 +2,25 @@ import React, { useState, useEffect } from "react";
 import Category from "./Category";
 import { fetchCategoryList } from "../utils/fetchData";
 
-const Categories = ({ handleCategory, handleMyInfo }) => {
+const Categories = ({ onCategorySelect, selectedCategory, handleMyInfo }) => {
    const [categoryList, setCategoryList] = useState([]);
    const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
    useEffect(() => {
       const fetchData = async () => {
          try {
+            setIsLoadingCategories(true);
             const categories = await fetchCategoryList();
             setCategoryList(categories);
             setIsLoadingCategories(false);
          } catch (error) {
-            setIsLoadingCategories(false);
             handleMyInfo({ type: "danger", text: error.message });
+            setIsLoadingCategories(false);
             console.error(error);
          }
       };
-
       fetchData();
    }, []);
-
-   const handleSelectedCategory = (selectedCategoryName) => {
-      const tempCategories = categoryList.map((item) =>
-         item.category === selectedCategoryName
-            ? { ...item, selected: true }
-            : { ...item, selected: false }
-      );
-      setCategoryList(tempCategories);
-
-      handleCategory(selectedCategoryName);
-   };
 
    return (
       <div>
@@ -41,9 +30,10 @@ const Categories = ({ handleCategory, handleMyInfo }) => {
             <div className="categories">
                {categoryList.map((item, index) => (
                   <Category
-                     key={item.categoryId}
+                     key={item.category}
                      singleCategory={item}
-                     handleSelectedCategory={handleSelectedCategory}
+                     selectedCategory={selectedCategory}
+                     onCategorySelect={onCategorySelect}
                   />
                ))}
             </div>
