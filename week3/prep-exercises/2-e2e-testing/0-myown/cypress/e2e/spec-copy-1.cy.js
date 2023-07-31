@@ -61,8 +61,18 @@ describe("Categories", () => {
       });
 
       // 2. Click a category
+      cy.get('[data-elementid="electronics"]').click();
+
       // 3. Check that that category is selected
+      cy.get('[data-selected="true"]').should("have.length", 1);
+
       // 4. Click a different category
+      cy.get('[data-elementid="men\'s clothing"]').click();
+
       // 5. Check that only the new category is selected
+      // Check that one category is selected
+      cy.get('[data-selected="true"]').should("have.length", 1);
+      cy.get('[data-selected="false"]').should("have.length", 3);
+      // Check that three categories are not selected
    });
 });
