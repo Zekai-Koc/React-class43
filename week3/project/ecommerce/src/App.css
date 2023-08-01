@@ -1,0 +1,132 @@
+.App {
+   text-align: center;
+
+   box-sizing: border-box;
+}
+
+/* ----------------- Categories ----------------- */
+.categories {
+   display: flex;
+   margin: 5px;
+   justify-content: center;
+}
+
+.cat--item {
+   background-color: #efeff0;
+   cursor: pointer;
+   font-weight: 700;
+   margin: 5px;
+   padding: 12px;
+}
+
+.cat-selected {
+   background-color: cadetblue;
+}
+
+.cat--item:hover {
+   background-color: darkgray;
+}
+
+/* ----------------- Products ----------------- */
+.products {
+   display: flex;
+   flex-wrap: wrap;
+   list-style: none;
+   margin-block-end: 0;
+   margin-block-start: 0;
+   padding-inline-start: 0;
+}
+
+.product--item {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   width: calc(33% - 16px);
+   margin: 8px;
+   /* border: 1px solid blue; */
+}
+
+.product {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   /* border: 1px solid red; */
+   margin: 10px;
+}
+
+.product-image-wrapper {
+   display: flex;
+}
+
+.product--image {
+   margin-bottom: auto;
+   margin-top: auto;
+   /* max-height: 300px; */
+   height: 300px;
+   object-fit: contain;
+   width: 85%;
+   /* max-width: 300px; */
+   border-style: none;
+   /* border: 1px solid blue; */
+}
+
+.product--title {
+   overflow: hidden;
+   padding-top: 8px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.product--heart {
+   /* background-color: #fff; */
+   cursor: pointer;
+   height: 20px;
+   padding: 8px;
+   /* position: absolute; */
+   /* right: 0; */
+   /* top: 20px; */
+   width: 20px;
+   /* border: 1px solid red; */
+}
+
+.product--heart img {
+   width: 20px;
+   height: 20px;
+}
+
+/* Responsive Rules */
+
+/* For screens smaller than 768px */
+@media (max-width: 767px) {
+   .categories {
+      flex-wrap: wrap;
+   }
+   .cat--item {
+      flex-basis: 50%;
+   }
+   .product--item {
+      width: calc(50% - 16px);
+   }
+}
+
+/* For screens smaller than 576px */
+@media (max-width: 575px) {
+   .product--item {
+      width: 100%;
+   }
+}
+
+/* For screens larger than 1200px */
+@media (min-width: 1201px) {
+   .product--item {
+      width: calc(25% - 16px);
+   }
+}
+
+/* For screens larger than 1400px */
+@media (min-width: 1401px) {
+   .product--item {
+      width: calc(20% - 16px);
+   }
+}
