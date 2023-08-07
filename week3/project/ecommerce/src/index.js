@@ -1,17 +1,18 @@
 //                              Project link on netlify
 // --------------------------------------------------------------------------------
-// https://64aab3117ed34f28ea2eafb1--incomparable-dieffenbachia-601ed8.netlify.app/
-//
+// https://64d0e760be3d0c65830eb0a7--hyf-ecommerce-project.netlify.app/
 // --------------------------------------------------------------------------------
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
+import { FavoritesProvider } from "./FavoritesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-   // <React.StrictMode>
-   <App />
-   // </React.StrictMode>
+   <React.StrictMode>
+      <FavoritesProvider>
+         <App />
+      </FavoritesProvider>
+   </React.StrictMode>
 );

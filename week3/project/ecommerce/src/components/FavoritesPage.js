@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFavorites } from "../FavoritesContext";
 import { fetchProductDetails } from "../utils/fetchData";
 import "./FavoritesPage.css";
-import heartSolid from "../assets//heart-solid.svg";
+import heartSolid from "../assets/heart-solid.svg";
 
 const FavoritesPage = () => {
    const { favorites } = useFavorites();
@@ -32,6 +32,7 @@ const FavoritesPage = () => {
    return (
       <div className="wrapper-favorites">
          <h1>Favorites</h1>
+         <h3>Total Favorites: {favorites.length}</h3>
          {loading ? (
             <div>Loading favorite products...</div>
          ) : error ? (

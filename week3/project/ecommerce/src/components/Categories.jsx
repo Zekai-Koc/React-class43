@@ -1,39 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Category from "./Category";
-import { fetchCategoryList } from "../utils/fetchData";
+import useFetch from "../hooks/useFetch";
+import Myinfo from "./Myinfo";
+import processCategoriesData from "../utils/processCategories";
 
 const Categories = ({ onCategorySelect, selectedCategory, handleMyInfo }) => {
-   const [categoryList, setCategoryList] = useState([]);
-   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+   const {
+      data,
+      loading: isLoadingCategories,
+      error,
+   } = useFetch("https://fakestoreapi.com/products/categories");
 
-   useEffect(() => {
-      const fetchData = async () => {
-         try {
-            setIsLoadingCategories(true);
-            const categories = await fetchCategoryList();
-            setCategoryList(categories);
-            setIsLoadingCategories(false);
-            // console.log("categoryList:", categoryList);
-         } catch (error) {
-            handleMyInfo({ type: "danger", text: error.message });
-            setIsLoadingCategories(false);
-            console.error(error);
-         }
-      };
-      fetchData();
-   }, []);
-
-   // console.log("categoryListOutside:", categoryList);
+   const processedCategories = processCategoriesData(data);
 
    return (
       <div>
          {isLoadingCategories ? (
             <div>Loading categories...</div>
+         ) : error ? (
+            <Myinfo type="error" text={error} />
          ) : (
             <div className="categories">
-               {categoryList.map((item, index) => (
+               {processedCategories.map((item, index) => (
                   <Category
-                     key={item.category}
+                     key={item.categoryId}
                      singleCategory={item}
                      selectedCategory={selectedCategory}
                      onCategorySelect={onCategorySelect}

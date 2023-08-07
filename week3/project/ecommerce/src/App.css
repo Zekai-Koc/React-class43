@@ -44,14 +44,12 @@
    height: 100%;
    width: calc(33% - 16px);
    margin: 8px;
-   /* border: 1px solid blue; */
 }
 
 .product {
    display: flex;
    flex-direction: column;
    height: 100%;
-   /* border: 1px solid red; */
    margin: 10px;
 }
 
@@ -62,13 +60,10 @@
 .product--image {
    margin-bottom: auto;
    margin-top: auto;
-   /* max-height: 300px; */
    height: 300px;
    object-fit: contain;
    width: 85%;
-   /* max-width: 300px; */
    border-style: none;
-   /* border: 1px solid blue; */
 }
 
 .product--title {
@@ -79,15 +74,10 @@
 }
 
 .product--heart {
-   /* background-color: #fff; */
    cursor: pointer;
    height: 20px;
    padding: 8px;
-   /* position: absolute; */
-   /* right: 0; */
-   /* top: 20px; */
    width: 20px;
-   /* border: 1px solid red; */
 }
 
 .product--heart img {

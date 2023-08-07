@@ -1,13 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Categories from "./Categories";
 import Products from "./Products";
 import Myinfo from "./Myinfo";
-import { useFavorites } from "../FavoritesContext";
 
 function Home() {
    const [myInfo, setMyInfo] = useState({ show: false });
    const [selectedCategory, setSelectedCategory] = useState("All Products");
-   const [selectedProduct, setSelectedProduct] = useState("");
 
    const handleMyInfo = ({ type, text }) => {
       setMyInfo({ show: true, type, text });
@@ -20,14 +18,6 @@ function Home() {
       setSelectedCategory(categoryName);
    };
 
-   const onProductSelect = (productName) => {
-      setSelectedProduct(productName);
-   };
-
-   const { favorites, addFavorite, removeFavorite, isFavorite } =
-      useFavorites();
-   // console.log(favorites);
-
    return (
       <div>
          {myInfo.show && <Myinfo type={myInfo.type} text={myInfo.text} />}
@@ -39,7 +29,6 @@ function Home() {
          />
          <Products
             selectedCategory={selectedCategory}
-            handleProduct={onProductSelect}
             handleMyInfo={handleMyInfo}
          />
       </div>
