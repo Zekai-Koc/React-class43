@@ -19,9 +19,10 @@ const FavoritesPage = () => {
                favorites.map((productId) => fetchProductDetails(productId))
             );
             setFavoriteProducts(favoriteProductsData);
-            setLoading(false);
          } catch (error) {
             setError(error.message);
+            setLoading(false);
+         } finally {
             setLoading(false);
          }
       };

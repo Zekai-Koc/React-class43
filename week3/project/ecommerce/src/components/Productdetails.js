@@ -16,41 +16,45 @@ const ProductDetails = () => {
       error,
    } = useFetch(`https://fakestoreapi.com/products/${id}`);
 
+   if (error) {
+      return <Myinfo type="error" text={error} />;
+   }
+
+   if (loading) {
+      return <Myinfo type="error" text={error} />;
+   }
+
+   if (!product) {
+      return null;
+   }
+
    return (
       <div>
-         {error ? (
-            <Myinfo type="error" text={error} />
-         ) : loading ? (
-            <div>Loading product details...</div>
-         ) : product ? (
-            <div>
-               <h2>Product Details</h2>
-               <div className="wrapper-img">
+         (
+         <div>
+            <h2>Product Details</h2>
+            <div className="wrapper-img">
+               <img
+                  className="product--image"
+                  src={product.image}
+                  alt={product.title}
+               />
+               {isFavorite(id) ? (
+                  <img src={heartSolid} alt="Favorited" className="img-heart" />
+               ) : (
                   <img
-                     className="product--image"
-                     src={product.image}
-                     alt={product.title}
+                     src={heartRegular}
+                     alt="Not Favorited"
+                     className="img-heart"
                   />
-                  {isFavorite(id) ? (
-                     <img
-                        src={heartSolid}
-                        alt="Favorited"
-                        className="img-heart"
-                     />
-                  ) : (
-                     <img
-                        src={heartRegular}
-                        alt="Not Favorited"
-                        className="img-heart"
-                     />
-                  )}
-               </div>
-               <p>{product.category}</p>
-               <p>{product.title}</p>
-               <p>{product.price}</p>
-               <p>{product.description}</p>
+               )}
             </div>
-         ) : null}
+            <p>{product.category}</p>
+            <p>{product.title}</p>
+            <p>{product.price}</p>
+            <p>{product.description}</p>
+         </div>
+         )
       </div>
    );
 };

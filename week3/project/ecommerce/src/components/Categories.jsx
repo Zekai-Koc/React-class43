@@ -13,24 +13,26 @@ const Categories = ({ onCategorySelect, selectedCategory, handleMyInfo }) => {
 
    const processedCategories = processCategoriesData(data);
 
+   if (isLoadingCategories) {
+      return <div>Loading categories...</div>;
+   }
+
+   if (error) {
+      return <Myinfo type="error" text={error} />;
+   }
+
    return (
       <div>
-         {isLoadingCategories ? (
-            <div>Loading categories...</div>
-         ) : error ? (
-            <Myinfo type="error" text={error} />
-         ) : (
-            <div className="categories">
-               {processedCategories.map((item, index) => (
-                  <Category
-                     key={item.categoryId}
-                     singleCategory={item}
-                     selectedCategory={selectedCategory}
-                     onCategorySelect={onCategorySelect}
-                  />
-               ))}
-            </div>
-         )}
+         <div className="categories">
+            {processedCategories.map((item, index) => (
+               <Category
+                  key={item.categoryId}
+                  singleCategory={item}
+                  selectedCategory={selectedCategory}
+                  onCategorySelect={onCategorySelect}
+               />
+            ))}
+         </div>
       </div>
    );
 };
