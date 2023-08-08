@@ -1,5 +1,4 @@
 import { BigHead } from "@bigheads/core";
-// import { BorderedDiv } from "components/pretty-defaults";
 
 const MIKONG = {
    body: "chest",
@@ -47,10 +46,6 @@ const DIANA = {
    skinTone: "light",
 };
 
-const RandomHead = ({ person }) => (
-   // <BorderedDiv style={{ width: "125px", display: "auto" }}>
-   <BigHead {...person} />
-   // </BorderedDiv>
-);
+const RandomHead = ({ person }) => <BigHead {...person} />;
 
 export { RandomHead, MIKONG, MITHI, DIANA };

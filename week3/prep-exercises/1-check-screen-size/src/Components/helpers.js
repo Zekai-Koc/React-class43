@@ -1,5 +1,3 @@
-// import { PrettyHeader } from "components/pretty-defaults";
-
 const DisplaySize = ({ height, width }) => (
    <div>
       {width}px / {height}px
@@ -20,22 +18,7 @@ const BigHeadMessage = ({ state }) => {
             lineHeight: "1",
             flexWrap: "wrap",
          }}
-      >
-         {/* <div style={{ maxWidth: "250px" }}>
-            {"You are seeing "}
-            <PrettyHeader Component="span" style={{ fontSize: "20px" }}>
-               {state.name}
-            </PrettyHeader>
-            {" because your screen size is "}
-            <PrettyHeader Component="span" style={{ fontSize: "20px" }}>
-               {state.size}!
-            </PrettyHeader>
-            <br />
-            <div style={{ paddingTop: "10px", fontSize: "50px" }}>
-               {state.icon}
-            </div>
-         </div> */}
-      </div>
+      ></div>
    );
 };
 

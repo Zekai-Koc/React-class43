@@ -10,9 +10,7 @@ const formatDebugValueWithinWindow = ({ minWidth, maxWidth, isWithin }) => {
    return `(max-width: ${maxWidth}px) and (min-width: ${minWidth}px) => ${isWithin}`;
 };
 
-// Adapted from: https://usehooks.com/useWindowSize/
 function useWindowSize() {
-   // Initialize state with undefined width/height so server and client renders match
    const [windowSize, setWindowSize] = useState({
       width: undefined,
       height: undefined,
@@ -29,7 +27,7 @@ function useWindowSize() {
          });
 
       window.addEventListener("resize", handleResize);
-      handleResize(); // call it right away!
+      handleResize();
 
       return () => window.removeEventListener("resize", handleResize);
    }, []);
