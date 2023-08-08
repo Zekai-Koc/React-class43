@@ -15,6 +15,8 @@ const ProductDetails = () => {
             setProduct(product);
          } catch (error) {
             setError(error);
+         } finally {
+            setError("");
          }
       };
 

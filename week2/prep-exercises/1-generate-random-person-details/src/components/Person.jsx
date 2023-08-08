@@ -1,8 +1,6 @@
 import React from "react";
 
 const Person = ({ person }) => {
-   // console.log("+++++++++++++", person);
-
    return (
       <div className="App">
          <ul>

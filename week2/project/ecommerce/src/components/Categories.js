@@ -15,8 +15,9 @@ const Categories = ({ onCategorySelect, selectedCategory, handleMyInfo }) => {
             setIsLoadingCategories(false);
          } catch (error) {
             handleMyInfo({ type: "danger", text: error.message });
-            setIsLoadingCategories(false);
             console.error(error);
+         } finally {
+            setIsLoadingCategories(false);
          }
       };
       fetchData();

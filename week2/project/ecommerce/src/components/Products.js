@@ -39,25 +39,26 @@ const Products = ({ selectedCategory, handleProduct, handleMyInfo }) => {
       }
    };
 
+   if (productSelected) {
+      return <ProductDetails />;
+   }
+
+   if (isLoadingProducts) {
+      return <div>Loading products...</div>;
+   }
    return (
       <div>
-         {productSelected ? (
-            <ProductDetails />
-         ) : isLoadingProducts ? (
-            <div>Loading products...</div>
-         ) : (
-            <ul className="products">
-               {productList.map((product) => {
-                  return (
-                     <Product
-                        key={product.id}
-                        product={product}
-                        onProductSelect={handleProductItem}
-                     />
-                  );
-               })}
-            </ul>
-         )}
+         <ul className="products">
+            {productList.map((product) => {
+               return (
+                  <Product
+                     key={product.id}
+                     product={product}
+                     onProductSelect={handleProductItem}
+                  />
+               );
+            })}
+         </ul>
       </div>
    );
 };
